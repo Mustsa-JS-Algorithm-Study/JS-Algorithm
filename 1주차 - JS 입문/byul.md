@@ -43,7 +43,7 @@
 
   `.toFixed(digit)` : 고정 소수점 만들기
 
-> ## 3. 특정 문자 제거하기 ⭐
+> ## 3. 특정 문자 제거하기 🔥
 
 - 나의 풀이
 
@@ -165,7 +165,7 @@
   };
   ```
 
-> ## 7. 배열 회전시키기
+> ## 7. 배열 회전시키기 🔥
 
 - 나의 풀이
 
@@ -213,3 +213,145 @@
   `배열.unshift(a)` : 가장 처음 원소로 a를 넣음
 
   `배열.push(a)` : 가장 마지막 원소로 a를 넣음
+
+> ## 8. 주사위의 개수
+
+- 나의 풀이
+
+  ```javascript
+  function solution(box, n) {
+    return (
+      Math.floor(box[0] / n) * Math.floor(box[1] / n) * Math.floor(box[2] / n)
+    );
+  }
+  ```
+
+- 좋은 풀이
+  ```javascript
+  function solution(box, n) {
+    return box.reduce((acc, v) => acc * Math.floor(v / n), 1);
+  }
+  ```
+  `.reduce((acc, v)=>{},initial)` : initial=acc, 콜백함수를 실행하며 acc에 모은다.
+
+> ## 9. 369게임
+
+- 나의 풀이
+
+  ```javascript
+  function solution(order) {
+    var arr = [];
+    while (true) {
+      var remain = order % 10;
+      arr.push(remain);
+      order = Math.floor((order /= 10));
+      if (order < 1) break;
+    }
+    var count = 0;
+    arr.forEach((el) => {
+      if (el % 3 === 0 && el !== 0) count++;
+    });
+    return count;
+  }
+  ```
+
+  숫자 그대로 풀려고 했다.
+
+- 좋은 풀이
+
+  ```javascript
+  function solution(order) {
+    var answer = [...order.toString().matchAll(/[3|6|9]/g)].length;
+    return answer;
+  }
+  ```
+
+  `정규표현식`과 `matchAll()`
+
+  ```javascript
+  function solution(order) {
+    return ("" + order).split(/[369]/).length - 1;
+  }
+  ```
+
+  `""+order` 하면 다 string이 된다
+
+  `정규표현식`과 `split()`
+
+  ```javascript
+  function solution(order) {
+    const mySet = new Set([3, 6, 9]);
+    return String(order)
+      .split("")
+      .filter((num) => mySet.has(Number(num))).length;
+  }
+  ```
+
+  `set`만들려면 `new Set`
+
+  `set.has()`로 set에 있는지 여부를 판단할 수 있다.
+
+  ```javascript
+  function solution(order) {
+    return (order + "").replace(/[0,1,2,4,5,7,8]/g, "").length;
+  }
+  ```
+
+> ## 10. 문자열 정렬하기 (1)
+
+- 나의 풀이
+
+  ```javascript
+  function solution(my_string) {
+    var arr = [...my_string].filter((el) => Number.isInteger(parseInt(el)));
+    return arr.sort().map((el) => parseInt(el));
+  }
+  ```
+
+- 좋은 풀이
+
+  ```javascript
+  function solution(my_string) {
+    return my_string
+      .match(/\d/g)
+      .sort((a, b) => a - b)
+      .map((n) => Number(n));
+  }
+  ```
+
+  `정규표현식`과 `match()`
+
+> ## 11. 문자열 정렬하기 (2)
+
+- 나의 풀이
+
+  ```javascript
+  function solution(my_string) {
+    return my_string.toLowerCase().split("").sort().join("");
+  }
+  ```
+
+> ## 12. 숫자 찾기
+
+- 나의 풀이
+
+  ```javascript
+  function solution(num, k) {
+    var arr = [...num.toString()].map((el) => parseInt(el));
+    var index = arr.findIndex((el) => el === k);
+    return index < 0 ? index : index + 1;
+  }
+  ```
+
+- 좋은 풀이
+  ```javascript
+  function solution(num, k) {
+    return (
+      num
+        .toString()
+        .split("")
+        .map((el) => Number(el))
+        .indexOf(k) + 1 || -1
+    );
+  }
+  ```
