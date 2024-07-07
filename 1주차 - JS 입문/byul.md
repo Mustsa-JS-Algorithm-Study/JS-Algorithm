@@ -234,7 +234,7 @@
   ```
   `.reduce((acc, v)=>{},initial)` : initial=acc, 콜백함수를 실행하며 acc에 모은다.
 
-> ## 9. 369게임
+> ## 9. 369게임 🔥
 
 - 나의 풀이
 
@@ -346,12 +346,41 @@
 - 좋은 풀이
   ```javascript
   function solution(num, k) {
-    return (
-      num
-        .toString()
-        .split("")
-        .map((el) => Number(el))
-        .indexOf(k) + 1 || -1
-    );
+    return ("❤" + num).indexOf(k);
   }
   ```
+  맨 앞에 문자를 하나 더 추가한다.
+
+> ## 13. 외계행성의 나이
+
+- 나의 풀이
+
+  ```javascript
+  function solution(age) {
+    var chars = "abcdefghij".split("");
+    var digits = age.toString().split("");
+    return digits.map((el) => chars[el]).join("");
+  }
+  ```
+
+  문자열도 그 자체로 배열이니까 split("") 안 해도 된다.
+
+> ## 14. 합성수 찾기
+
+```javascript
+function solution(n) {
+  var total = 0;
+  for (i = 1; i <= n; i++) {
+    var count = 0;
+    for (j = 1; j <= i; j++) {
+      if (i % j === 0) {
+        count++;
+      }
+    }
+    if (count >= 3) {
+      total++;
+    }
+  }
+  return total;
+}
+```
