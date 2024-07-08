@@ -21,9 +21,9 @@
   }
   ```
 
-  `Number.isInteger()` 함수를 사용했다. true false 반환
+  - `Number.isInteger()` 함수를 사용했다. true false 반환
 
-  `삼항연산자`를 사용했다.
+  - `삼항연산자`를 사용했다.
 
 > ## 2. 피자 나눠먹기 (3)
 
@@ -35,13 +35,13 @@
   }
   ```
 
-  `Math.ceil()` : 올림
+  - `Math.ceil()` : 올림
 
-  `Math.floor()` : 내림
+  - `Math.floor()` : 내림
 
-  `Math.round()` : 반올림
+  - `Math.round()` : 반올림
 
-  `.toFixed(digit)` : 고정 소수점 만들기
+  - `.toFixed(digit)` : 고정 소수점 만들기
 
 > ## 3. 특정 문자 제거하기 🔥
 
@@ -67,7 +67,7 @@
   }
   ```
 
-  letter로 `split`하고 `join` 했다.
+  - letter로 `split`하고 `join` 했다.
 
   ```javascript
   function solution(my_string, letter) {
@@ -75,7 +75,7 @@
   }
   ```
 
-  `replaceAll(letter, "")` : letter를 ""로 바꾼다.
+  - `replaceAll(letter, "")` : letter를 ""로 바꾼다.
 
   ```javascript
   function solution(my_string, letter) {
@@ -85,7 +85,7 @@
   }
   ```
 
-  `Array.from(문자열)`으로 배열로 만들었다.
+  - `Array.from(문자열)`으로 배열로 만들었다.
 
 > ## 4. 최댓값 만들기 (1)
 
@@ -115,10 +115,10 @@
   }
   ```
 
-  `배열.sort` 를 몰랐다.
+  - `배열.sort` 를 몰랐다.
 
-  `sort()`는 오름차순
-  `sort((a,b)=>b-a)`는 내림차순
+  - `sort()`는 오름차순
+  - `sort((a,b)=>b-a)`는 내림차순
 
 > ## 5. 배열 원소의 길이
 
@@ -146,7 +146,7 @@
   }
   ```
 
-  최소공배수를 구하려고 했다.
+  - 최소공배수를 구하려고 했다.
 
 - 좋은 풀이
 
@@ -206,13 +206,13 @@
   }
   ```
 
-  `배열.pop()` : 가장 마지막 원소를 반환, 배열에서 제거
+  - `배열.pop()` : 가장 마지막 원소를 반환, 배열에서 제거
 
-  `배열.shift()` : 가장 첫 원소를 반환, 배열에서 제거
+  - `배열.shift()` : 가장 첫 원소를 반환, 배열에서 제거
 
-  `배열.unshift(a)` : 가장 처음 원소로 a를 넣음
+  - `배열.unshift(a)` : 가장 처음 원소로 a를 넣음
 
-  `배열.push(a)` : 가장 마지막 원소로 a를 넣음
+  - `배열.push(a)` : 가장 마지막 원소로 a를 넣음
 
 > ## 8. 주사위의 개수
 
@@ -232,7 +232,7 @@
     return box.reduce((acc, v) => acc * Math.floor(v / n), 1);
   }
   ```
-  `.reduce((acc, v)=>{},initial)` : initial=acc, 콜백함수를 실행하며 acc에 모은다.
+  - `.reduce((acc, v)=>{},initial)` : initial=acc, 콜백함수를 실행하며 acc에 모은다.
 
 > ## 9. 369게임 🔥
 
@@ -255,7 +255,7 @@
   }
   ```
 
-  숫자 그대로 풀려고 했다.
+  - 숫자 그대로 풀려고 했다.
 
 - 좋은 풀이
 
@@ -266,7 +266,7 @@
   }
   ```
 
-  `정규표현식`과 `matchAll()`
+  - `정규표현식`과 `matchAll()`
 
   ```javascript
   function solution(order) {
@@ -274,9 +274,9 @@
   }
   ```
 
-  `""+order` 하면 다 string이 된다
+  - `""+order` 하면 다 string이 된다
 
-  `정규표현식`과 `split()`
+  - `정규표현식`과 `split()`
 
   ```javascript
   function solution(order) {
@@ -287,9 +287,9 @@
   }
   ```
 
-  `set`만들려면 `new Set`
+  - `set`만들려면 `new Set`
 
-  `set.has()`로 set에 있는지 여부를 판단할 수 있다.
+  - `set.has()`로 set에 있는지 여부를 판단할 수 있다.
 
   ```javascript
   function solution(order) {
@@ -319,7 +319,7 @@
   }
   ```
 
-  `정규표현식`과 `match()`
+  - `정규표현식`과 `match()`
 
 > ## 11. 문자열 정렬하기 (2)
 
@@ -349,7 +349,7 @@
     return ("❤" + num).indexOf(k);
   }
   ```
-  맨 앞에 문자를 하나 더 추가한다.
+  - 맨 앞에 문자를 하나 더 추가한다.
 
 > ## 13. 외계행성의 나이
 
@@ -363,7 +363,7 @@
   }
   ```
 
-  문자열도 그 자체로 배열이니까 split("") 안 해도 된다.
+  - 문자열도 그 자체로 배열이니까 split("") 안 해도 된다.
 
 > ## 14. 합성수 찾기
 
@@ -384,3 +384,163 @@ function solution(n) {
   return total;
 }
 ```
+
+> ## 15. 2차원으로 만들기
+
+- 나의 풀이
+
+  ```javascript
+  function solution(num_list, n) {
+    var answer = [];
+    for (i = 0; i < num_list.length / n; i++) {
+      var temp = [];
+      for (j = 0; j < n; j++) {
+        temp.push(num_list[n * i + j]);
+      }
+      answer.push(temp);
+    }
+    return answer;
+  }
+  ```
+
+- 좋은 풀이
+
+  ```javascript
+  function solution(num_list, n) {
+    var answer = [];
+
+    while (num_list.length) {
+      answer.push(num_list.splice(0, n));
+    }
+
+    return answer;
+  }
+  ```
+
+  - `splice(n,m)` : n에서 m-1까지 잘라서 반환
+
+  ```javascript
+  function solution(num_list, n) {
+    return Array(num_list.length / n)
+      .fill([])
+      .map(() => num_list.splice(0, n));
+  }
+  ```
+
+  - `Array(4).fill([])` : 길이 4의 배열을 []로 채움
+
+> ## 16. 배열의 유사도
+
+- 나의 풀이
+  ```javascript
+  function solution(s1, s2) {
+    return s1.filter((el) => s2.indexOf(el) !== -1).length;
+  }
+  ```
+- 좋은 풀이
+
+  ```javascript
+  function solution(s1, s2) {
+    const intersection = s1.filter((x) => s2.includes(x));
+    return intersection.length;
+  }
+  ```
+
+  - `includes()`를 사용.
+
+  ```javascript
+  function solution(s1, s2) {
+    const concat = [...s1, ...s2];
+    const setConcat = Array.from(new Set(concat));
+
+    return concat.length - setConcat.length;
+  }
+  ```
+
+  - `new Set(배열)`을 이용해서 중복되는 것을 제거했다.
+
+> ## 17. 약수 구하기
+
+- 나의 풀이
+  ```javascript
+  function solution(n) {
+    var answer = [];
+    for (i = 1; i <= n / 2; i++) {
+      if (n % i === 0) answer.push(i);
+    }
+    answer.push(n);
+    return answer;
+  }
+  ```
+
+> ## 18. 짝수 홀수 개수
+
+- 나의 풀이
+  ```javascript
+  function solution(num_list) {
+    var even = num_list.filter((el) => el % 2 === 0).length;
+    return [even, num_list.length - even];
+  }
+  ```
+- 좋은 풀이
+
+  ```javascript
+  function solution(num_list) {
+    var answer = [0, 0];
+
+    for (let a of num_list) {
+      answer[a % 2] += 1;
+    }
+
+    return answer;
+  }
+  ```
+
+  - 짝수와 홀수의 나머지를 인덱스에 활용했다.
+
+> ## 19. 문자 반복 출력하기
+
+- 나의 풀이
+  ```javascript
+  function solution(my_string, n) {
+    return my_string
+      .split("")
+      .map((el) => Array(n).fill(el).join(""))
+      .join("");
+  }
+  ```
+- 좋은 풀이
+  ```javascript
+  function solution(my_string, n) {
+    var answer = [...my_string].map((v) => v.repeat(n)).join("");
+    console.log(answer);
+    return answer;
+  }
+  ```
+  - `string.repeat(n)` : string을 n번 반복한 걸 반환.
+
+> ## 20. 세균 증식
+
+- 나의 풀이
+  ```javascript
+  function solution(n, t) {
+    return Array(t)
+      .fill(n)
+      .reduce((acc, cur) => acc * 2, n);
+  }
+  ```
+- 좋은 풀이
+
+  ```javascript
+  function solution(n, t) {
+    return n << t;
+  }
+  ```
+
+  - `비트연산자`
+
+  ```javascript
+  function solution(n, t) {
+    return n * Math.pow(2, t);
+  }
+  ```
