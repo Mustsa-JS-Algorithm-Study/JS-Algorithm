@@ -194,7 +194,3 @@ function solution(progresses, speeds) {
     return result;
   }
   ```
-
-```
-
-```
