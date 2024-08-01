@@ -98,3 +98,6 @@ function solution(n, times) {
     return answer;
 }
 ```
+
+
+## 문제2. 입국심사
