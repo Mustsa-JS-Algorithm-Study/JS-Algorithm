@@ -64,6 +64,9 @@ function check(numbers,target,count,sum) {
 
 그런데 이렇게 하니 문제는, maximum 문제가 발생...
 아마 재귀함수에서 reduce 함수를 구하는 게 문제였던 걸로 생각함.
+재귀를 제거하니 테스트케이스에서는 오류가 없는데, 전체 채점을 하면 틀린 케이스가 나옴.
+
+잘한풀이)
 
 ```JavaScript
 
@@ -85,6 +88,77 @@ function solution(numbers, target) {
 
 ```
 
-DFS와 BFS의 이론적 내용만 알았지, 실제 코드 구현은 잊어버린 상태인 것 같아 다시 코드 복습하는 과정을 가졌다!
+해결방법)
+Stack을 사용하여 후입선출 방식, 재귀함수를 활용하여 순환구조를 만드는 게 DFS의 핵심 포인트다.
+재귀함수가 아직 제대로 확확 정리되지는 않는 것 같다.
+
+DFS와 BFS의 이론적 내용만 알았지, 실제 코드 구현은 잊어버린 상태인 것 같아 다시 코드 복습하는 과정을 가졌다! **순환구조에 대한 이해도 필요해 보인다.**
+
+---
+
+## 2.네트워크
+
+네트워크의 수 = 방문하지 않은 노드 + 1
+
+로 계산하면 된다. 즉, BFS를 활용하여 모든 노드에 대해 조사하고 방문하지 않은 노드의 수를 구하면 되는 것!
+
+BFS를 해당 문제에 대해 사용하려면 다음과 같이 진행하면 된다
+
+기본설정 - 방문 유무를 확인하는 과정이 필요하므로, computer의 개수 크기만큼 visit 를 생성하고 false로 채운다.
+
+아래는 queue를 활용한 BFS이다.
+
+1. 처음으로 방문한 노드를 queue에 추가하고, 방문한 것으로 체크한다.
+2. 인접하지만 방문하지 않은 노드가 있으면 queue에 넣고 방문한 것으로 체크한다.
+3. queue에 노드가 더이상 없을 때까지 반복한다.
+4. 모든 초기 정점에 대해 반복한다.
+
+```JavaScript
+function solution(n, computers) {
+
+    let visit = []; //방문 여부 체크
+    let count = 0;
+
+    for (let i=0;i<computers.length;i++) visit.push(false);
+
+    function check(node) {
+        let nodes = [node]; //방문해야 하는 노드
+        while (nodes.length !== 0)
+        {
+            var i = nodes[0];
+            visit[i] = true; //노드 방문
+
+            for (let j=0;j<computers.length;j++)
+            {
+                if (i===j) continue;
+                else if (!visit[j] && computers[i][j])
+                {
+                    nodes.push(j);
+                }
+            }
+            nodes.shift();
+        }
+    }
+
+
+    for (i=0;i<computers.length;i++)
+    {
+        if (!visit[i])
+        {
+            check(i);
+            count++;
+        }
+    }
+    return count;
+
+}
+```
+
+### 추가사항) 코드 간단하게 만드는 법
+
+1. visit array에 false 값으로 가득 채우는 걸 for-loop을 사용했지만, `new Array(n).fill()`을 쓰면 가능하다
+
+   - let visit = new Array(n).fill(false);
+
 
 
