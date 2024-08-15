@@ -11,6 +11,8 @@
 루트 노드에서(혹은 랜덤노드) 선택한 지점에서 갈 수 있는 노드들로 전부 이동
 -> 갈 수 있는 게 없다면 그 이전으로 다시 돌아와서 확인
 
+![image](./DFS.jpg)
+
 ## 1. 타겟 넘버
 
 > 문제)
@@ -160,5 +162,121 @@ function solution(n, computers) {
 
    - let visit = new Array(n).fill(false);
 
+## 3. 게임 내 맵 최단거리
 
+### 유념해야 할 것
+
+current position이 pos[i][j]라고 할 때, 갈 수 있는 지점은 동,서,남,북이므로
+`pos[i][j+1]`,`pos[i][j-1]`,`pos[i+1][j]`, `pos[i-1][j]` 중에서 1인 값이다.
+
+미로처럼 막다른 길에 도달했을 때는 DFS를 사용하는 편이다. 끝까지 갔다가 막다른 길이 나오면 그 직전으로 돌아가는 **Stack**을 사용해야 한다
+
+남,동>서,북 순으로 진행하는 게 좋음
+
+```JavaScript
+function solution(maps) {
+    var answer = 0;
+    const n = maps[0].length-1;
+    const m = maps.length-1;
+    var count = 0;
+
+    function move(xpos,ypos) {
+        if (xpos === n && ypos === n) return count;
+
+        if (xpos<m-1 && maps[xpos+1][ypos])
+        {
+            count++;
+            move(xpos+1,ypos); //남쪽
+        }
+        else if (ypos<n-1 && maps[xpos][ypos+1])
+        {
+            count++;
+            move(xpos,ypos+1); //동쪽
+        }
+        else if (xpos>0 && maps[xpos-1][ypos])
+        {
+            count++;
+            move(xpos-1,ypos); //북쪽
+        }
+        else if (ypos>0 && maps[xpos][ypos-1])
+        {
+            count++;
+            move(xpos,ypos-1); //서쪽
+        }
+        else {
+            count--;
+            return -1;
+        }
+
+    }
+
+    move(0,0);
+    return answer;
+}
+```
+
+이렇게  순환구조로 하려 했는데 왜 계속 `RangeError: Maximum call stack size exceeded` 문제가 발생하는가...
+-> 아마 방문 유무를 체크하지 않아서 그런듯함. 
+
+왜 DFS가 아니라 BFS여야 하는지 gpt의 힘을 빌림...
+
+
+>  왜 BFS를 사용하는가?
+> 
+최단 경로 탐색: 
+
+BFS는 모든 노드를 같은 **단계**에서 탐색하기 때문에 지점에 도달한 경로가 **최단거리**임을 보장함
+
+DFS는 한 경로를 끝까지 탐색한 후 다른 경로를 탐색하기 때문에, 처음 찾은 경로가 최단 경로가 아닐 수 있음.
+
+#### 그럼 언제 어떤 걸 사용해야 할까?
+
+1. DFS 사용 사례: DFS는 미로의 **모든 경로**를 탐색하거나, **특정한 조건**을 만족하는 경로를 찾는 문제에서 유용함. 예를 들어, 모든 가능한 출구를 찾거나, 특정 경로를 우선 탐색하고 싶을 때
+
+2. BFS 사용 사례:출발점에서 목표 지점까지의 최단 경로를 찾는 문제
+
+
+
+
+```JavaScript
+function solution(maps) {
+    const n = maps.length;
+    const m = maps[0].length;
+    const directions = [
+        [1, 0],  // 남쪽
+        [0, 1],  // 동쪽
+        [-1, 0], // 북쪽
+        [0, -1]  // 서쪽
+    ];
+
+    let queue = [[0, 0, 1]];  // [x, y, 현재까지의 거리]
+    let visited = Array.from({ length: n }, () => Array(m).fill(false));
+    visited[0][0] = true;
+
+    while (queue.length > 0) {
+        const [x, y, distance] = queue.shift();
+
+        // 목표 지점에 도달했을 경우 거리 반환
+        if (x === n - 1 && y === m - 1) {
+            return distance;
+        }
+
+        // 네 방향으로 이동 시도
+        for (const [dx, dy] of directions) {
+            const newX = x + dx;
+            const newY = y + dy;
+
+            // 유효한 위치인지 체크
+            if (newX >= 0 && newX < n && newY >= 0 && newY < m && maps[newX][newY] === 1 && !visited[newX][newY]) {
+                visited[newX][newY] = true;
+                queue.push([newX, newY, distance + 1]);
+            }
+        }
+    }
+
+    // 목표 지점에 도달하지 못했을 경우 -1 반환
+    return -1;
+}
+
+```
 
