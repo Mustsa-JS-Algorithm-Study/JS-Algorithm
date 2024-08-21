@@ -25,25 +25,25 @@
 ```javascript
 function solution(n, times) {
   times.sort((a, b) => a - b);
-  let left = 1;
-  let right = times[times.length - 1] * n;
-  while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
+  let min = 1;
+  let max = times[times.length - 1] * n;
+  while (min <= max) {
+    let mid = Math.floor((min + max) / 2);
     let total = 0;
     for (var time of times) {
       total += Math.floor(mid / time);
     }
-    total >= n ? (right = mid - 1) : (left = mid + 1);
+    total >= n ? (max = mid - 1) : (min = mid + 1);
   }
-  return left;
+  return min;
 }
 ```
 
 > # 2. 징검다리
->
-> https://school.programmers.co.kr/questions/31861
 
-이 링크의 해설을 읽고 정리해 보았습니다..
+https://school.programmers.co.kr/questions/31861
+
+이 링크의 해설을 읽고 논리 과정을 정리해 보았습니다
 
 ```
 1. distance의 범위가 1,000,000,000 이므로 이분탐색이 가장 효율적이다.
